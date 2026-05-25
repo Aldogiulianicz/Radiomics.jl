@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 # Install Julia packages
 RUN julia -e 'using Pkg; \
     Pkg.add(url="https://github.com/pzaffino/Radiomics.jl"); \
-    Pkg.add(["NIfTI", "ArgParse", "CSV", "DataFrames"]); \
+    Pkg.add(["NIfTI", "ArgParse", "CSV", "DataFrames", "PrecompileTools"]); \
     Pkg.precompile()'
 
 # Set working directory and generate the embedded Julia script
@@ -56,10 +56,6 @@ function parse_args_custom()\n\
             help = "Return raw feature matrices"\n\
             arg_type = Bool\n\
             default = false\n\
-        "--sample_rate"\n\
-            help = "Sample rate for feature extraction"\n\
-            arg_type = Float64\n\
-            default = 0.03\n\
         "--verbose"\n\
             help = "Enable verbose output"\n\
             arg_type = Bool\n\
@@ -87,7 +83,6 @@ features = Radiomics.extract_radiomic_features(\n\
     weighting_norm=args["weighting_norm"],\n\
     keep_largest_only=args["keep_largest_only"],\n\
     get_raw_matrices=args["get_raw_matrices"],\n\
-    sample_rate=args["sample_rate"],\n\
     slices_2d=nothing,\n\
     verbose=args["verbose"]\n\
 );\n\
