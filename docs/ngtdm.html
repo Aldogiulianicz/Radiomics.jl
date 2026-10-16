@@ -707,7 +707,14 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="installation.html">Getting Started</a>
-      <a href="IBSI_compliance.html">IBSI Compliance</a>
+      <a href="cite.html">How to cite</a>
+      <div class="dropdown">
+        <button class="dropdown-btn">IBSI Benchmark</button>
+        <div class="dropdown-content">
+          <a href="IBSI_compliance.html">IBSI Compliance</a>
+          <a href="IBSI_SUV_Normalization.html">IBSI SUV Normalization</a>
+        </div>
+      </div>
       <a href="example.html">Examples</a>
       <a href="cross_languages.html">Cross languages</a>
       <a href="news.html">News</a>
@@ -853,13 +860,12 @@
   </main>
 
   <script>
-    const dropdownBtn = document.querySelector('.dropdown-btn');
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
 
-    dropdownBtn.addEventListener('click', () => {
-      dropdownBtn.parentElement.classList.toggle('active');
+    document.querySelectorAll('.dropdown-btn').forEach(btn => {
+      btn.addEventListener('click', () => btn.parentElement.classList.toggle('active'));
     });
 
     mobileMenuToggle.addEventListener('click', () => {
